@@ -547,4 +547,28 @@ Vue.createApp({
       ],
     };
   },
+  computed: {
+    columnNameHead() {
+      const keys = [
+        "title",
+        "isbn",
+        "author",
+        "publisher",
+        "price",
+        "numPages",
+      ];
+      return keys;
+    },
+    filteredBooks() {
+      return this.books.filter((book) => {
+        return book.publisher === "O'Reilly Media";
+      });
+    },
+  },
+  methods: {
+    newPrice(price) {
+      const [, priceValue] = price.split("$");
+      return "$" + (priceValue * 0.8).toFixed(2);
+    },
+  },
 }).mount("#app");
